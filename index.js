@@ -17,29 +17,6 @@ var api = new ParseServer({
   appId: process.env.APP_ID || '35rQ21nN4QG8O38lz2H6OSexRC54rUQm',
   masterKey: process.env.MASTER_KEY || 'DHK96A82Li203306k67Ux98chBDfUH39', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'https://parse-server-ayoa.herokuapp.com',  // Don't forget to change to https if needed
-
-  // set preventLoginWithUnverifiedEmail to false to allow user to login without verifying their email
-  // set preventLoginWithUnverifiedEmail to true to prevent user from login if their email is not verified
-  preventLoginWithUnverifiedEmail: false, // defaults to false
-
-  // The public URL of your app.
-  // This will appear in the link that is used to verify email addresses and reset passwords.
-  // Set the mount path as it is in serverURL
-  publicServerURL: 'https://parse-server-ayoa.herokuapp.com',
-  // Your apps name. This will appear in the subject and body of the emails that are sent.
-  appName: 'Parse App',
-  // The email adapter
-  emailAdapter: {
-    module: 'parse-server-simple-mailgun-adapter',
-    options: {
-      // The address that your emails come from
-      fromAddress: 'parse@example.com',
-      // Your domain from mailgun.com
-      domain: process.env.MAILGUN_DOMAIN,
-      // Your API key from mailgun.com
-      apiKey: process.env.MAILGUN_API_KEY,
-    }
-  }
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
