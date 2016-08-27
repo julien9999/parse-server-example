@@ -17,18 +17,6 @@ var api = new ParseServer({
   appId: process.env.APP_ID || '35rQ21nN4QG8O38lz2H6OSexRC54rUQm',
   masterKey: process.env.MASTER_KEY || 'DHK96A82Li203306k67Ux98chBDfUH39', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'https://parse-server-ayoa.herokuapp.com',  // Don't forget to change to https if needed
-  publicServerURL: 'https://parse-server-ayoa.herokuapp.com',
-  appName: 'KITapp',
-  emailAdapter: {
-    module: 'parse-server-ayoa-mailgun-adapter',
-    options: {
-      // The address that your emails come from
-      fromAddress: process.env.MAIL_FROM_ADDRESS,
-      // Your domain from mailgun.com
-      domain: process.env.MAILGUN_DOMAIN,
-      // Your API key from mailgun.com
-      apiKey: process.env.MAILGUN_API_KEY,
-    },
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
