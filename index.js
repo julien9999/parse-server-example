@@ -20,7 +20,7 @@ var api = new ParseServer({
   publicServerURL: 'https://parse-server-ayoa.herokuapp.com',
   appName: 'KITapp',
   emailAdapter: {
-    module: 'parse-server-ayoa-Mailgun',
+    module: 'Mailgun',
     options: {
       // The address that your emails come from
       fromAddress: "admin@kit.fr",
