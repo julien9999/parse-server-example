@@ -17,18 +17,6 @@ var api = new ParseServer({
   appId: process.env.APP_ID || '35rQ21nN4QG8O38lz2H6OSexRC54rUQm',
   masterKey: process.env.MASTER_KEY || 'DHK96A82Li203306k67Ux98chBDfUH39', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'https://parse-server-ayoa.herokuapp.com',  // Don't forget to change to https if needed
-  verifyUserEmails: true,
-
-  // if `verifyUserEmails` is `true` and
-  //     if `emailVerifyTokenValidityDuration` is `undefined` then
-  //        email verify token never expires
-  //     else
-  //        email verify token expires after `emailVerifyTokenValidityDuration`
-  //
-  // `emailVerifyTokenValidityDuration` defaults to `undefined`
-  //
-  // email verify token below expires in 2 hours (= 2 * 60 * 60 == 7200 seconds)
-  emailVerifyTokenValidityDuration: 2 * 60 * 60, // in seconds (2 hours = 7200 seconds)
 
   // set preventLoginWithUnverifiedEmail to false to allow user to login without verifying their email
   // set preventLoginWithUnverifiedEmail to true to prevent user from login if their email is not verified
@@ -37,7 +25,7 @@ var api = new ParseServer({
   // The public URL of your app.
   // This will appear in the link that is used to verify email addresses and reset passwords.
   // Set the mount path as it is in serverURL
-  publicServerURL: 'https://example.com/parse',
+  publicServerURL: 'https://parse-server-ayoa.herokuapp.com',
   // Your apps name. This will appear in the subject and body of the emails that are sent.
   appName: 'Parse App',
   // The email adapter
