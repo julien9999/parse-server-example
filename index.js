@@ -17,6 +17,9 @@ var api = new ParseServer({
   appId: process.env.APP_ID || '35rQ21nN4QG8O38lz2H6OSexRC54rUQm',
   masterKey: process.env.MASTER_KEY || 'DHK96A82Li203306k67Ux98chBDfUH39', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'https://parse-server-ayoa.herokuapp.com',  // Don't forget to change to https if needed
+  publicServerURL: 'http://backend.appname.com',
+  // Your apps name. This will appear in the subject and body of the emails that are sent.
+  appName: 'appname blah blah',
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
