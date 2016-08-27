@@ -18,7 +18,7 @@ var api = new ParseServer({
   masterKey: process.env.MASTER_KEY || 'DHK96A82Li203306k67Ux98chBDfUH39', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'https://parse-server-ayoa.herokuapp.com',  // Don't forget to change to https if needed
   verifyUserEmails: true,
-  publicServerURL: 'https://parse-server-ayoa.herokuapp.com/parse',
+  publicServerURL: 'https://parse-server-ayoa.herokuapp.com/',
   appName: 'KITapp',
   emailAdapter: { 
       module: 'parse-server-simple-mailgun-adapter',
