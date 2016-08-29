@@ -24,8 +24,8 @@ var api = new ParseServer({
       module: 'parse-server-simple-mailgun-adapter',
       options: { 
                  fromAddress: 'contact@kit-app.com',
-                 domain: 'sandbox81133941b9e04d339efc55a41c7474b0.mailgun.org', 
-                 apiKey: 'key-860b65fe97302b266be58295d5872096', 
+                 domain: 'mailgun.kit-app.com', 
+                 apiKey: 'key-3f693df97b5bdaf3c747f77ac262913c', 
                }
    },  
   liveQuery: {
