@@ -4,6 +4,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
+const resolve = require('path').resolve;
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -26,6 +27,15 @@ var api = new ParseServer({
         fromAddress: 'contact@kit-app.com',
         domain: 'mailgun.kit-app.com', 
         apiKey: 'key-3f693df97b5bdaf3c747f77ac262913c', 
+        templates: {
+          passwordResetEmail: {
+            subject: 'Reset your password',
+            pathPlainText: resolve(__dirname, 'path/to/templates/password_reset_email.txt'),
+            pathHtml: resolve(__dirname, 'path/to/templates/password_reset_email.html'),
+            callback: (user) => { return { firstName: user.get('firstName') }}
+            // Now you can use {{firstName}} in your templates
+          }
+      }
       }
    },  
   liveQuery: {
