@@ -27,6 +27,7 @@ var api = new ParseServer({
         fromAddress: 'contact@kit-app.com',
         domain: 'mailgun.kit-app.com', 
         apiKey: 'key-3f693df97b5bdaf3c747f77ac262913c', 
+      passwordResetSubject: 'Renouvellement de mot de passe %appname%',
         templates: {
           passwordResetEmail: {
             subject: 'Reset your password',
