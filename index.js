@@ -27,6 +27,7 @@ var api = new ParseServer({
         domain: 'mailgun.kit-app.com', 
         apiKey: 'key-3f693df97b5bdaf3c747f77ac262913c', 
         passwordResetSubject: 'Renouvellement de mot de passe %appname%',
+        passwordResetBody: 'Hi,\n\nYou requested a password reset for %appname%.\n\nClick here to reset it:\n%link%',
       }
    },  
   liveQuery: {
