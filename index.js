@@ -23,10 +23,18 @@ var api = new ParseServer({
   emailAdapter: { 
       module: 'parse-server-simple-mailgun-adapter',
       options: { 
-                 fromAddress: 'contact@kit-app.com',
-                 domain: 'mailgun.kit-app.com', 
-                 apiKey: 'key-3f693df97b5bdaf3c747f77ac262913c', 
-               }
+        fromAddress: 'contact@kit-app.com',
+        domain: 'mailgun.kit-app.com', 
+        apiKey: 'key-3f693df97b5bdaf3c747f77ac262913c', 
+        templates: {
+          passwordResetEmail: {
+            subject: 'Reset your password',
+            pathPlainText: resolve(__dirname, 'path/to/templates/password_reset_email.txt'),
+            pathHtml: resolve(__dirname, 'path/to/templates/password_reset_email.html'),
+            callback: (user) => { return { firstName: user.get('firstName') }}
+          }
+        }
+      }
    },  
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
