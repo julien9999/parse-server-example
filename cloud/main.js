@@ -209,23 +209,17 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 
 
 
-
-
 Parse.Cloud.define("blockperson", function(request, response) {
-
-var GameScore = Parse.Object.extend("_User");
-var query = new Parse.Query(GameScore);
+    var query = new Parse.Query("_User");
     query.equalTo("objectId",request.params.me);
-query.first({
-  success: function(object) {
+
+  query.first().then(function(object) {
     object.set("firstname", "jul")
-    object.save();
-    response.success("object");
-  },
-  error: function(error) {
-    alert("Error: " + error.code + " " + error.message);
-  }
-});
-	
+            object.save();              
+  }).then(function(success) {
+  	response.success("success");
+  }, function(error) {
+    response.error("Une erreur s'est produite.");
+  });      	
 });
 
