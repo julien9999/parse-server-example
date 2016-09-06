@@ -212,7 +212,7 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 
 
 Parse.Cloud.define("blockperson", function(request, response) {
-    var query = new Parse.Query("_User");
+var query = new Parse.Query(Parse.Object.extend("_User"));
     query.equalTo("objectId",request.params.me);
 
   query.first({ useMasterKey: true }).then(function(object) {
