@@ -212,16 +212,20 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 
 
 Parse.Cloud.define("blockperson", function(request, response) {
-var query = new Parse.Query(Parse.Object.extend("_User"));
-    query.equalTo("objectId",request.params.me);
 
-  query.first({ useMasterKey: true }).then(function(object) {
-  	object.set("firstname", "jul")
-  	object.addUnique("iblock",pointerTo(request.params.userObjectid, "_User"));
-  	object.save();
-        response.success(object);
-      }, function(error) {
-        response.error(error);
-      });
+var GameScore = Parse.Object.extend("_User");
+var query = new Parse.Query(GameScore);
+    query.equalTo("objectId",request.params.me);
+query.first({
+  success: function(object) {
+    object.set("firstname", "jul")
+    object.save();
+    response.success("object");
+  },
+  error: function(error) {
+    alert("Error: " + error.code + " " + error.message);
+  }
+});
+	
 });
 
