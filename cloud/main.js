@@ -217,9 +217,9 @@ Parse.Cloud.define("blockperson", function(request, response) {
 
 query.first({
   success: function(object) {
-    object.add("iblock", pointerTo(request.params.friend, "_User"));
+    object.addUnique("iblock", pointerTo(request.params.friend, "_User"));
     object.save();
-    response.success(object);
+    response.success("success");
   },
   error: function(error) {
     response.error("Une erreur s'est produite.");
