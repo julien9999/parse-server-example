@@ -204,3 +204,34 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
     response.error("Une erreur s'est produite.");
   });      	
 });
+
+
+
+
+
+
+
+Parse.Cloud.define("blockperson", function(request, response) {
+    var query = new Parse.Query("_User");
+    query.equalTo("objectId",request.params.me)
+
+    var query2 = new Parse.Query("_User");
+    query2.equalTo("objectId",request.params.friend)
+
+  query.find().then(function(object) {
+    object.add("iblock", pointerTo(request.params.friend, "_User"));
+    object.save();
+  }).then(function(success) {
+	 query2.find().then(function(object) {
+	    object.add("iblock", pointerTo(request.params.me, "_User"));
+	    object.save();
+	  }).then(function(success) {
+	            response.success("success");
+	  }, function(error) {
+	        response.error("Une erreur s'est produite.");
+	  });    
+  }, function(error) {
+        response.error("Une erreur s'est produite.");
+  });    
+    
+});
