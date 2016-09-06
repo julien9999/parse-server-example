@@ -216,8 +216,8 @@ Parse.Cloud.define("blockperson", function(request, response) {
     query.equalTo("objectId",request.params.me);
 
   query.first({ useMasterKey: true }).then(function(object) {
-  	object.addUnique("iblock",pointerTo(request.params.userObjectid, "_User"));
-  	object.save();
+  	object[0].addUnique("iblock",pointerTo(request.params.userObjectid, "_User"));
+  	object[0].save();
         response.success(object);
       }, function(error) {
         response.error(error);
