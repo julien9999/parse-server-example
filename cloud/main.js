@@ -212,15 +212,9 @@ var query = new Parse.Query(GameScore);
 query.equalTo("email", "julien.gatt@me.com");
   query.first({useMasterKey:true}).then(function(objAgain) {
     objAgain.set("firstname","Jul");
+    objAgain.save(null, { useMasterKey: true });
+    response.success();
 
-	objAgain.save(null, { useMasterKey: true }, {
-            success:function (aFoob) {
-                response.success();
-            },
-            error:function (pointAward, error) {
-                response.error(error);
-            }
-        }
     );    
     
     
