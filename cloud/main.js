@@ -213,7 +213,18 @@ query.equalTo("email", "julien.gatt@me.com");
   query.first({useMasterKey:true}).then(function(objAgain) {
     objAgain.set("firstname","Jul");
     objAgain.save();
-    response.success(objAgain.toJSON());
+    
+	objAgain.save(null, {
+            success:function (aFoob) {
+                response.success();
+            },
+            error:function (pointAward, error) {
+                response.error(error);
+            }
+        }
+    );    
+    
+    
   }, function(err) {response.error(err); });	
 });
 
