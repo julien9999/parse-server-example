@@ -262,7 +262,7 @@ query2.equalTo("objectId", request.params.friend);
        }
     	userData.set("iblocked",array1);
         userData.save(null, { useMasterKey: true });
-	response.success();
+	response.success(array1);
 
         },
         error: function(error){
