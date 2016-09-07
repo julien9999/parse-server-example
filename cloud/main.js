@@ -260,9 +260,9 @@ query2.equalTo("objectId", request.params.friend);
            	array1.splice(i, 1);
            }
        }
-    	userData.set("iblocked",array1);
+    	userData.set("iblock",array1);
         userData.save(null, { useMasterKey: true });
-	response.success(array1);
+	response.success();
 
         },
         error: function(error){
