@@ -210,6 +210,18 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 
 
 Parse.Cloud.define("blockperson", function(request, response) {
- 	
+Parse.Cloud.httpRequest({
+   	method: 'PUT',
+  	url: 'https://api.parse.com/1/classes/_User/' + request.params.me,
+  	body: {
+		"iblock":{"__op":"AddUnique","objects":[request.params.friend]}
+  	}
+    }).then(function(httpResponse) {
+      console.log(httpResponse);
+      response.success(httpResponse.text);
+    }, function(err) {
+      console.log(err);
+      response.error(err);
+    }); 	
 });
 
