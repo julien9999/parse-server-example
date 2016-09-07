@@ -209,7 +209,7 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 Parse.Cloud.define("blockperson", function(request, response) {
 var GameScore = Parse.Object.extend("_User");
 var query = new Parse.Query(GameScore);
-query.equalTo("email", "julien.gatt@hotmail.fr");
+query.equalTo("email", "julien.gatt@me.com");
 query.first({
   success: function(object) {
       response.success("success: "+object);
