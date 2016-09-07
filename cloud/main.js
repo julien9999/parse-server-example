@@ -256,7 +256,18 @@ query2.equalTo("objectId", request.params.friend);
         success:function(userData){
 	    	userData.remove("iblock",pointerTo(request.params.friend, "_User"));
 	        userData.save(null, { useMasterKey: true });
-		response.success();
+
+		    query2.first({
+		        useMasterKey: true, 
+		        success:function(userData){
+			    	userData.remove("blockedby",pointerTo(request.params.me, "_User"));
+			        userData.save(null, { useMasterKey: true });
+				response.success();
+		        },
+		        error: function(error){
+		            response.error(error);
+		        }
+		    });
         },
         error: function(error){
             response.error(error);
