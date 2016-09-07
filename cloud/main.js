@@ -225,7 +225,7 @@ point.save(null, {
     response.success("success");
   },
   error: function(point, error) {
-  	response.error("Une erreur s'est produite.");
+  	response.error(error);
     // The save failed.
     // error is a Parse.Error with an error code and description.
   }
