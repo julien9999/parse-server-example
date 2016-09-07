@@ -214,7 +214,7 @@ query.equalTo("email", "julien.gatt@me.com");
     objAgain.set("firstname","Jul");
     objAgain.save();
     
-	objAgain.save(null, {
+	objAgain.save(null, { useMasterKey: true } {
             success:function (aFoob) {
                 response.success();
             },
