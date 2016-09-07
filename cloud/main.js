@@ -238,7 +238,37 @@ query2.equalTo("objectId", request.params.friend);
             response.error(error);
         }
     });
+});
+
+
+
+
+Parse.Cloud.define("unblockperson", function(request, response) {
+var GameScore = Parse.Object.extend("_User");
+var query = new Parse.Query(GameScore);
+query.equalTo("objectId", request.params.me);
+
+var query2 = new Parse.Query(GameScore);
+query2.equalTo("objectId", request.params.friend);
+
+    query.first({
+        useMasterKey: true, 
+        success:function(userData){
+	 var array1=userData.iblocked;
+	for (var i = 0; i < array1.length; i++) {
+           if(array1[i].objectId===request.params.friend){
+           	array1.splice(i, 1);
+           }
+       }
+    	userData.set("iblocked",array1);
+        userData.save(null, { useMasterKey: true });
+	response.success();
+
+        },
+        error: function(error){
+            response.error(error);
+        }
+    });
     
 
 });
-
