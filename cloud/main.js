@@ -254,18 +254,9 @@ query2.equalTo("objectId", request.params.friend);
     query.first({
         useMasterKey: true, 
         success:function(userData){
-	 var index;
-
-	for(var i = 0; i < userData.iblock.length; i++) {
-	   if(userData.iblock[i].objectId == request.params.friend) {
-	     index = i;
-	   }
-	}
-
-    	//userData.set("iblock",array1);
-        //userData.save(null, { useMasterKey: true });
-	response.success("i="+index);
-
+	    	userData.remove("iblock",pointerTo(request.params.friend, "_User"));
+	        userData.save(null, { useMasterKey: true });
+		response.success();
         },
         error: function(error){
             response.error(error);
