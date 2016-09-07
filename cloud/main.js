@@ -254,7 +254,7 @@ query2.equalTo("objectId", request.params.friend);
     query.first({
         useMasterKey: true, 
         success:function(userData){
-	 var array1=userData.get('iblocked');
+	 var array1=userData.get('iblock');
 	for (var i = 0; i < array1.length; i++) {
            if(array1[i].objectId===request.params.friend){
            	array1.splice(i, 1);
