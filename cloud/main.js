@@ -225,7 +225,7 @@ query2.equalTo("objectId", request.params.friend);
 		        useMasterKey: true, 
 		        success:function(userData){
 		            console.log("before save");
-		    	    userData.addUnique("iblock",pointerTo(request.params.me, "_User"));
+		    	    userData.addUnique("blockedby",pointerTo(request.params.me, "_User"));
 		            userData.save(null, { useMasterKey: true });
 		            response.success();
 		        },
