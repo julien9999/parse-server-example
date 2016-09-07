@@ -264,7 +264,7 @@ query2.equalTo("objectId", request.params.friend);
 
     	//userData.set("iblock",array1);
         //userData.save(null, { useMasterKey: true });
-	response.success("i="+i);
+	response.success("i="+index);
 
         },
         error: function(error){
