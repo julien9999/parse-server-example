@@ -212,6 +212,8 @@ var query = new Parse.Query(GameScore);
 query.equalTo("email", "julien.gatt@me.com");
 query.first({
   success: function(object) {
+  	object.set("firstname", "Jul")
+  	object.save();
       response.success("success: "+object);
   },
   error: function(error) {
