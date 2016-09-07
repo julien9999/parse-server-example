@@ -254,15 +254,11 @@ query2.equalTo("objectId", request.params.friend);
     query.first({
         useMasterKey: true, 
         success:function(userData){
-	 var array1=userData.get('iblock');
-	for (var i = 0; i < userData.get('iblock').length; i++) {
-           if(userData.get('iblock')[i].objectId===request.params.friend){
-           	array1.splice(i, 1);
-           }
-       }
-    	userData.set("iblock",array1);
-        userData.save(null, { useMasterKey: true });
-	response.success();
+	 var i =userData.get('iblock').indexOf({"__type":"Pointer","className":"_User","objectId":"QIOSmX30Xo"});
+	
+    	//userData.set("iblock",array1);
+        //userData.save(null, { useMasterKey: true });
+	response.success("i="+i);
 
         },
         error: function(error){
