@@ -209,15 +209,14 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 Parse.Cloud.define("blockperson", function(request, response) {
 var GameScore = Parse.Object.extend("_User");
 var query = new Parse.Query(GameScore);
-query.equalTo("email", "julien.gatt@me.com");
+query.equalTo("objectId", request.params.me);
 
     query.first({
         useMasterKey: true, 
         success:function(userData){
             console.log("before save");
-    	    userData.set("firstname","Jul");
+    	    userData.add("iblock",pointerTo(request.params.friend, "_User"));
             userData.save(null, { useMasterKey: true });
-            console.log("after save");
             response.success();
         },
         error: function(error){
