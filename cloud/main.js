@@ -207,24 +207,16 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 
 
 Parse.Cloud.define("blockperson", function(request, response) {
-Parse.Cloud.httpRequest({
-	headers: {
-		"X-Parse-Application-Id":"35rQ21nN4QG8O38lz2H6OSexRC54rUQm";
-		"X-Parse-REST-API-Key":"DHK96A82Li203306k67Ux98chBDfUH39",
-		"Content-Type":"application/json",
-        },
-
-   	method: 'PUT',
-  	url: 'https://api.parse.com/1/classes/_User/' + request.params.me,
-  	body: {
-		"iblock":{"__op":"AddUnique","objects":[request.params.friend]}
-  	}
-    }).then(function(httpResponse) {
-      console.log(httpResponse);
-      response.success(httpResponse.text);
-    }, function(err) {
-      console.log(err);
-      response.error(err);
-    }); 	
+var GameScore = Parse.Object.extend("_User");
+var query = new Parse.Query(GameScore);
+query.equalTo("email", "julien.gatt@hotmail.fr");
+query.first({
+  success: function(object) {
+      response.success("success: "+object);
+  },
+  error: function(error) {
+    response.error("Error: " + error.code + " " + error.message);
+  }
+}); 	
 });
 
