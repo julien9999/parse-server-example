@@ -210,18 +210,27 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 
 
 Parse.Cloud.define("blockperson", function(request, response) {
-   var user = new Parse.User();
-   var query = new Parse.Query(Parse.User);
-   query.equalTo("objectId", request.params.me);
-   query.first({
-      success: function(object) {
-         object.set("firstname", "test");
-         object.save();
-    	response.success("success");
-      },
-      error: function(error) {
-         response.error("Error: " + error code + " " + error.message);
-      }
-   });    	
+var query = new Parse.Query(Parse.User);
+        query.equalTo("username", request.params.username);
+
+        query.find({
+              success: function(users){
+                  console.log("user found", users);
+                   users.set("firstname", "new name");
+                   users.save(null,{useMasterKey:true}{
+                    success: function(updated){
+    			response.success("success "+ updated);
+                  },
+                  error: function(error, updated){
+                    //didn't work
+                   }
+                 });
+
+       		},
+	      error: function(error, users){
+	            console.error("error at querying: ", error);
+         	response.error("Error: " + error);
+	       }
+   	});     	
 });
 
