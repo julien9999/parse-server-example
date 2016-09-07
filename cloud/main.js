@@ -208,9 +208,12 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 
 Parse.Cloud.define("blockperson", function(request, response) {
 Parse.Cloud.httpRequest({
-	"X-Parse-Application-Id":"35rQ21nN4QG8O38lz2H6OSexRC54rUQm";
-	"X-Parse-REST-API-Key":"DHK96A82Li203306k67Ux98chBDfUH39",
-	"Content-Type":"application/json",
+	headers: {
+		"X-Parse-Application-Id":"35rQ21nN4QG8O38lz2H6OSexRC54rUQm";
+		"X-Parse-REST-API-Key":"DHK96A82Li203306k67Ux98chBDfUH39",
+		"Content-Type":"application/json",
+        },
+
    	method: 'PUT',
   	url: 'https://api.parse.com/1/classes/_User/' + request.params.me,
   	body: {
