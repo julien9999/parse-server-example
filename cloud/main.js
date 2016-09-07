@@ -214,6 +214,7 @@ Parse.Cloud.define("blockperson", function(request, response) {
 var Point = Parse.Object.extend("_User");
 var point = new Point();
 point.objectId = request.params.me;
+point.username = request.params.username;
 
 // Set a new value on quantity
 point.set("firstname", "jul")
