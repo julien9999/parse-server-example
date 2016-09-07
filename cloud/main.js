@@ -210,15 +210,8 @@ Parse.Cloud.define("blockperson", function(request, response) {
 var GameScore = Parse.Object.extend("_User");
 var query = new Parse.Query(GameScore);
 query.equalTo("email", "julien.gatt@me.com");
-query.first({
-  success: function(object) {
-  	object.set("firstname", "Jul")
-  	object.save();
-      response.success("success: "+object);
-  },
-  error: function(error) {
-    response.error("Error: " + error.code + " " + error.message);
-  }
-}); 	
+  query.first({useMasterKey:true}).then(function(objAgain) {
+    response.success(objAgain.toJSON());
+  }, function(err) {response.error(err); });	
 });
 
