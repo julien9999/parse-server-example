@@ -256,8 +256,8 @@ query2.equalTo("objectId", request.params.friend);
         success:function(userData){
 	 var index;
 
-	for(var i = 0; i < userData.get('iblock').length; i++) {
-	   if(userData.get('iblock')[i].objectId === request.params.friend) {
+	for(var i = 0; i < userData.iblock.length; i++) {
+	   if(userData.iblock[i].objectId == request.params.friend) {
 	     index = i;
 	   }
 	}
