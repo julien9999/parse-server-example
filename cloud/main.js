@@ -210,16 +210,25 @@ Parse.Cloud.define("luoupasChat", function(request, response) {
 
 
 Parse.Cloud.define("blockperson", function(request, response) {
-    var query = new Parse.Query("_User");
-    query.equalTo("objectId",request.params.me);
+// Create a pointer to an object of class Point with id dlkj83d
+var Point = Parse.Object.extend("_User");
+var point = new Point();
+point.objectId = request.params.me;
 
-  query.first().then(function(object) {
-    object.set("firstname", "jul")
-            object.save();              
-  }).then(function(success) {
-  	response.success("success");
-  }, function(error) {
-    response.error("Une erreur s'est produite.");
-  });      	
+// Set a new value on quantity
+point.set("firstname", "jul")
+
+// Save
+point.save(null, {
+  success: function(point) {
+    // Saved successfully.
+    response.success("success");
+  },
+  error: function(point, error) {
+  	response.error("Une erreur s'est produite.");
+    // The save failed.
+    // error is a Parse.Error with an error code and description.
+  }
+});     	
 });
 
