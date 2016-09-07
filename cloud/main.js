@@ -211,27 +211,34 @@ var GameScore = Parse.Object.extend("_User");
 var query = new Parse.Query(GameScore);
 query.equalTo("objectId", request.params.me);
 
+var query2 = new Parse.Query(GameScore);
+query2.equalTo("objectId", request.params.friend);
+
     query.first({
         useMasterKey: true, 
         success:function(userData){
             console.log("before save");
-    	    userData.add("iblock",pointerTo(request.params.friend, "_User"));
+    	    userData.addUnique("iblock",pointerTo(request.params.friend, "_User"));
             userData.save(null, { useMasterKey: true });
-            response.success();
+
+		    query2.first({
+		        useMasterKey: true, 
+		        success:function(userData){
+		            console.log("before save");
+		    	    userData.addUnique("iblock",pointerTo(request.params.me, "_User"));
+		            userData.save(null, { useMasterKey: true });
+		            response.success();
+		        },
+		        error: function(error){
+		            response.error(error);
+		        }
+		    });
         },
         error: function(error){
-            console.log(error);
             response.error(error);
         }
     });
     
-  /*
-  query.first({useMasterKey:true}).then(function(objAgain) {
-    objAgain.set("firstname","Jul");
-    objAgain.save(null, { useMasterKey: true });
-    response.success();
-    );    
-  }, function(err) {response.error(err); });
-  */
+
 });
 
