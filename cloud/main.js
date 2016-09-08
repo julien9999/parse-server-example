@@ -82,8 +82,6 @@ Parse.Cloud.define("AddRelationship", function(request, response) {
                             "userPointer":pointerTo(request.params.userObjectid, "_User"),
                             "friendPointer":pointerTo(request.params.friendObjectid, "_User"),
                             "accepted":false,
-                            "iblock":[],
-                            "blockedby":[]
                          });
                          reservation.save(null, {
                             success: function(reservation,success) {
@@ -116,8 +114,6 @@ Parse.Cloud.define("AddRelationship", function(request, response) {
                             "userPointer":pointerTo(request.params.userObjectid, "_User"),
                             "friendPointer":pointerTo(request.params.friendObjectid, "_User"),
                             "accepted":true,
-                            "iblock":[],
-                            "blockedby":[]
                          });
                          reservation.save(null, {
                             success: function(reservation,success) {
