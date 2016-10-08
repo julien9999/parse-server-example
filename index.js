@@ -18,6 +18,7 @@ var api = new ParseServer({
   masterKey: process.env.MASTER_KEY || 'DHK96A82Li203306k67Ux98chBDfUH39', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'https://parse-server-ayoa.herokuapp.com',  // Don't forget to change to https if needed
   //verifyUserEmails: true,
+  facebookAppIds: ['1625175871089817'],
   oauth: { facebook: { appIds: ['1625175871089817'] }},
   publicServerURL: 'https://parse-server-ayoa.herokuapp.com/',
   appName: 'KITapp',
