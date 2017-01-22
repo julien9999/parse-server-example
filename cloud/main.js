@@ -11,8 +11,8 @@ function randomString(len, charSet) {
 Parse.Cloud.afterSave("_User", function(request, response) {
     if (request.object.original) {
 	    var part1=randomString(4);
-	    var part2=randomString(4, '0123456789');
-    	request.object.set("kitcode",part1+''+part2);
+	    v//ar part2=randomString(4, '0123456789');
+    	request.object.set("kitcode",part1);
     	response.success();
     }
 });
