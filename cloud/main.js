@@ -1,5 +1,5 @@
 function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     var randomString = '';
     for (var i = 0; i < len; i++) {
         var randomPoz = Math.floor(Math.random() * charSet.length);
@@ -10,7 +10,7 @@ function randomString(len, charSet) {
 
 Parse.Cloud.afterSave("_User", function(request, response) {
     if (request.object.original) {
-    	request.object.set("kitcode",randomString(5));
+    	request.object.set("kitcode",randomString(4) + randomString(4,"0123456789");
     	response.success();
     }
 });
