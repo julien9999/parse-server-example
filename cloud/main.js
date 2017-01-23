@@ -1,6 +1,3 @@
-/*
-Reste a verifier si le random kitcode n'existe pas
-
 function randomString() {
     var randomString = '';
     var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -32,13 +29,25 @@ function shuffle(word) {
 Parse.Cloud.beforeSave(Parse.User, function(request, response) {
   var user = request.object;
   if (!user.get("kitcode")) {
-    	request.object.set("kitcode",shuffle(randomString(4)));
-    	response.success();
+	var kitcode=shuffle(randomString(4));		  
+	var query = new Parse.Query("_User");
+	  query.equalTo("kitcode",kitcode) 
+	  query.find({
+		  success: function(results) {
+		    if(!results.length){
+			request.object.set("kitcode",kitcode);
+			response.success();
+		    }
+		  },
+		  error: function(error) {
+		    alert("Error: " + error.code + " " + error.message);
+		  }
+	  }); 
   } else {
     response.success();
   }
 });
-*/
+
 
 
 Parse.Cloud.define("sendemail", function(request, response) {
