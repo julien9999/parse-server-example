@@ -8,12 +8,12 @@ function randomString(len, charSet) {
     return randomString;
 }
 
-Parse.Cloud.beforeSave("_User", function(request, response) {
-    if (request.object.original) {
-    	request.object.set("kitcode",randomString(5));
+Parse.Cloud.afterSave("_User", function(request, response) {
+    if (request.user.original) {
+    	request.user.set("kitcode",randomString(5));
     	response.success();
     }
-},sessionToken: request.object.getSessionToken());
+},sessionToken: request.user.getSessionToken());
 
 
 
