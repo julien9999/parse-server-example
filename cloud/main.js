@@ -9,8 +9,8 @@ function randomString(len, charSet) {
 }
 
 Parse.Cloud.afterSave("_User", function(request, response) {
-    if (request.object.original) {
-    	request.object.set("kitcode",randomString(5));
+    if (request.user.original) {
+    	request.user.set("kitcode",randomString(5));
     	response.success();
     }
 });
