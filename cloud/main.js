@@ -1,4 +1,4 @@
-/*
+
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     var randomString = '';
@@ -9,13 +9,16 @@ function randomString(len, charSet) {
     return randomString;
 }
 
-Parse.Cloud.afterSave("_User", function(request, response) {
-    if (request.object.existed) {
+Parse.Cloud.beforeSave(Parse.User, function(request, response) {
+  var user = request.object;
+  if (!user.get("kitcode")) {
     	request.object.set("kitcode","test");
     	response.success();
-    }
+  } else {
+    response.success();
+  }
 });
-*/
+
 
 
 Parse.Cloud.define("sendemail", function(request, response) {
