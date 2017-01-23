@@ -1,3 +1,4 @@
+/*
 function randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     var randomString = '';
@@ -14,7 +15,7 @@ Parse.Cloud.afterSave("_User", function(request, response) {
     	response.success();
     }
 });
-
+*/
 
 
 Parse.Cloud.define("sendemail", function(request, response) {
