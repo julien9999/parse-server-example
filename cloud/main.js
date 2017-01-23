@@ -13,7 +13,7 @@ Parse.Cloud.beforeSave("_User", function(request, response) {
     	request.object.set("kitcode",randomString(5));
     	response.success();
     }
-});
+},sessionToken: request.object.getSessionToken());
 
 
 
