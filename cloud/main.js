@@ -1,10 +1,15 @@
 
-function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+function randomString() {
     var randomString = '';
-    for (var i = 0; i < len; i++) {
+    var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var charSet2 = '0123456789';
+    for (var i = 0; i < 4; i++) {
         var randomPoz = Math.floor(Math.random() * charSet.length);
         randomString += charSet.substring(randomPoz,randomPoz+1);
+    }
+    for (var i = 0; i < 4; i++) {
+        var randomPoz = Math.floor(Math.random() * charSet2.length);
+        randomString += charSet2.substring(randomPoz,randomPoz+1);
     }
     return randomString;
 }
