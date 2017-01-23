@@ -1,19 +1,3 @@
-function randomString(len, charSet) {
-    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    var randomString = '';
-    for (var i = 0; i < len; i++) {
-        var randomPoz = Math.floor(Math.random() * charSet.length);
-        randomString += charSet.substring(randomPoz,randomPoz+1);
-    }
-    return randomString;
-}
-
-Parse.Cloud.afterSave("_User", function(request, response) {
-    if (request.object.original) {
-    	request.object.set("kitcode",randomString(5));
-    	response.success();
-    }
-});
 
 
 
