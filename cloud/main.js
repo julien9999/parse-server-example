@@ -12,7 +12,7 @@ function randomString(len, charSet) {
 Parse.Cloud.beforeSave(Parse.User, function(request, response) {
   var user = request.object;
   if (!user.get("kitcode")) {
-    	request.object.set("kitcode","test");
+    	request.object.set("kitcode",randomString(4,'ABCDEFGHIJKLMNOPQRSTUVWXYZ'+randomString(4,'0123456789'));
     	response.success();
   } else {
     response.success();
