@@ -8,11 +8,11 @@ function randomString(len, charSet) {
     return randomString;
 }
 
-Parse.Cloud.beforeSave("_User", function(request, response) {
-    //if (request.object.original) {
-    	request.object.set("kitcode",randomString(5));
+Parse.Cloud.afterSave("_User", function(request, response) {
+    if (request.object.existed) {
+    	request.object.set("kitcode","test");
     	response.success();
-    //}
+    }
 });
 
 
