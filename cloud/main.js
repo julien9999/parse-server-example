@@ -14,8 +14,8 @@ function randomString() {
     return randomString;
 }
 
-function shuffle() {
-    var a = this.split(""),
+function shuffle(word) {
+    var a = word.split(""),
         n = a.length;
 
     for(var i = n - 1; i > 0; i--) {
