@@ -1,3 +1,5 @@
+/*
+Reste a verifier si le random kitcode n'existe pas
 
 function randomString() {
     var randomString = '';
@@ -36,7 +38,7 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
     response.success();
   }
 });
-
+*/
 
 
 Parse.Cloud.define("sendemail", function(request, response) {
