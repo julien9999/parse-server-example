@@ -1,3 +1,18 @@
+Parse.Cloud.define("KITprofil", function(request, response) {
+	var query = new Parse.Query("_User");
+	query.equalTo("objectId",request.params.objectId)
+  	query.first().then(function(object) {
+            object.set('latestlocation', request.params.latestlocation);
+            object.save();  
+  	}).then(function(success) {
+  		response.success(object);
+  	}, function(error) {
+    		response.error("Une erreur s'est produite.");
+  	});      	
+});
+
+
+
 function randomString() {
     var randomString = '';
     var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
