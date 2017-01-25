@@ -10,7 +10,7 @@ Parse.Cloud.define("KITprofil", function(request, response) {
                          response.success("test"); //return
                     },
                     error: function(results, error) { 
-                        response.error("error"); //return
+                        response.error(error); //return
                     }
                 });             
             },
