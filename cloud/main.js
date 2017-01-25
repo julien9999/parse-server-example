@@ -2,21 +2,22 @@ Parse.Cloud.define("KITprofil", function(request, response) {
 	var myprofile;
 	var query = new Parse.Query("_User");
 	query.equalTo("objectId",request.params.objectId)
-  	query.first().then(function(object) {
-            object.set('latestlocation',   new Parse.GeoPoint({latitude: request.params.latitude, longitude: request.params.longitude}));		
-            //object.save();  
-		object.save(null, {
-		  success:function(obj) { 
-		    response.success(obj);
-		  },
-		  error:function(err) { 
-		    response.error(err);
-		  }
-		});
-		
-  	}, function(error) {
-    		response.error("Une erreur s'est produite.");
-  	});      	
+        query.first({
+            success: function(result){
+            	result.set('latestlocation',   new Parse.GeoPoint({latitude: request.params.latitude, longitude: request.params.longitude}));		
+                result.save(result,{
+                    success: function(result) {
+                         response.success(result); //return
+                    },
+                    error: function(results, error) { 
+                        response.error("error"); //return
+                    }
+                });             
+            },
+            error: function(){
+                response.error("error"); //return
+            }
+        });
 });
 
 
