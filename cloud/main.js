@@ -1,11 +1,13 @@
 Parse.Cloud.define("KITprofil", function(request, response) {
+	var myprofile;
 	var query = new Parse.Query("_User");
 	query.equalTo("objectId",request.params.objectId)
   	query.first().then(function(object) {
             object.set('latestlocation', request.params.latestlocation);
             object.save();  
+		myprofile=object.toJSON();
   	}).then(function(success) {
-  		response.success(object.toJSON());
+  		response.success(myprofile);
   	}, function(error) {
     		response.error("Une erreur s'est produite.");
   	});      	
