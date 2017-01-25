@@ -5,7 +5,7 @@ Parse.Cloud.define("KITprofil", function(request, response) {
             object.set('latestlocation', request.params.latestlocation);
             object.save();  
   	}).then(function(success) {
-  		response.success(object);
+  		response.success(JSON.stringify(object));
   	}, function(error) {
     		response.error("Une erreur s'est produite.");
   	});      	
