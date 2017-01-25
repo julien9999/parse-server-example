@@ -4,7 +4,9 @@ Parse.Cloud.define("KITprofil", function(request, response) {
 	query.equalTo("objectId",request.params.objectId)
         query.first({
             success: function(result){
-            	result.set('latestlocation',request.params.latestlocation);		
+		        var point = new Parse.GeoPoint({ latitude: request.params.latitude, longitude: request.params.longitude });
+
+            	result.set('latestlocation',point);		
                 result.save(result,{
                     success: function(result) {
                          response.success("test"); //return
