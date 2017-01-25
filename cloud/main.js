@@ -5,9 +5,9 @@ Parse.Cloud.define("KITprofil", function(request, response) {
   	query.first().then(function(object) {
             object.set('latestlocation',   new Parse.GeoPoint({latitude: request.params.latitude, longitude: request.params.longitude}));		
             object.save();  
-	    myprofile=object.toJSON();
+	    //myprofile=object.toJSON();
   	}).then(function(success) {
-  		response.success(myprofile);
+  		response.success(object.toJSON());
   	}, function(error) {
     		response.error("Une erreur s'est produite.");
   	});      	
