@@ -7,7 +7,7 @@ Parse.Cloud.define("KITprofil", function(request, response) {
             object.save();  
 	    //myprofile=object.toJSON();
   	}).then(function(success) {
-  		response.success(object.toJSON());
+  		response.success(success);
   	}, function(error) {
     		response.error("Une erreur s'est produite.");
   	});      	
