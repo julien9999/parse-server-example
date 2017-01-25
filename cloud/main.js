@@ -3,11 +3,7 @@ Parse.Cloud.define("KITprofil", function(request, response) {
 	var query = new Parse.Query("_User");
 	query.equalTo("objectId",request.params.objectId)
   	query.first().then(function(object) {
-            var gp = new Parse.GeoPoint({
-                latitude: request.params.latitude,
-                longitude: request.params.longitude"                  
-            });
-            object.set('latestlocation', gp);		
+            object.set('latestlocation',   new Parse.GeoPoint({latitude: request.params.latitude, longitude: request.params.longitude}));		
             object.save();  
 	    myprofile=object.toJSON();
   	}).then(function(success) {
