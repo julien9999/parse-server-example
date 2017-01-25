@@ -3,9 +3,13 @@ Parse.Cloud.define("KITprofil", function(request, response) {
 	var query = new Parse.Query("_User");
 	query.equalTo("objectId",request.params.objectId)
   	query.first().then(function(object) {
-            object.set('latestlocation', request.params.latestlocation);
+            var gp = new Parse.GeoPoint({
+                latitude: request.params.latitude,
+                longitude: request.params.longitude"                  
+            });
+            object.set('latestlocation', gp);		
             object.save();  
-		myprofile=object.toJSON();
+	    myprofile=object.toJSON();
   	}).then(function(success) {
   		response.success(myprofile);
   	}, function(error) {
