@@ -41,7 +41,7 @@ query.first({
 	  }
 	});
 	*/
-	
+/*	
 	var myprofile;
 	var query = new Parse.Query("_User");
 	query.equalTo("objectId",request.params.objectId)
@@ -65,7 +65,25 @@ query.first({
                 response.error("error"); //return
             }
         });
-	
+*/
+	var query = new Parse.Query("_User");
+	query.equalTo("objectId",request.params.objectId)
+query.first({
+    success: function (user) {
+		        var point = new Parse.GeoPoint({ latitude: request.params.latitude, longitude: request.params.longitude });
+
+            	user.set('latestlocation',point);
+	    user.save({useMasterKey : true}, {
+            success: function (object) {
+                response.success("SUCCESS");
+            }, error: function (object, error) {
+                response.error(error);
+            }
+        });
+    }, error: function (error) {
+        response.error(error);
+    }
+});
 	
 });
 
