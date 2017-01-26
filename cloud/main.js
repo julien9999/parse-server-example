@@ -10,7 +10,7 @@ Parse.Cloud.define("KITprofil", function(request, response) {
 	point.set("latestlocation", geopoint);
 
 	// Save
-        point.save({ useMasterKey : true }, {
+	point.save(null, { useMasterKey: true }, {
 	  success: function(point) {
             response.success(point); //return
 	    // Saved successfully.
