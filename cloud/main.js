@@ -45,6 +45,7 @@ query.first({
 	var myprofile;
 	var query = new Parse.Query("_User");
 	query.equalTo("objectId",request.params.objectId)
+	query.equalTo("_sessionToken",request.params.sessionToken)
         query.first({
             success: function(result){
 		        var point = new Parse.GeoPoint({ latitude: request.params.latitude, longitude: request.params.longitude });
