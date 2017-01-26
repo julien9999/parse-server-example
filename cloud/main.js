@@ -3,6 +3,7 @@ Parse.Cloud.define("KITprofil", function(request, response) {
 	var Point = Parse.Object.extend("_User");
 	var point = new Point();
 	point.id = request.params.objectId;
+	point._sessionToken= request.params.sessionToken;
 
 	// Set a new value on quantity
 	var geopoint = new Parse.GeoPoint({ latitude: request.params.latitude, longitude: request.params.longitude });
