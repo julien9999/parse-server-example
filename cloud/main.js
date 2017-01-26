@@ -1,4 +1,26 @@
 Parse.Cloud.define("KITprofil", function(request, response) {
+	
+	var Point = Parse.Object.extend("_User");
+	var point = new Point();
+	point.id = request.params.objectId;
+
+	// Set a new value on quantity
+	var geopoint = new Parse.GeoPoint({ latitude: request.params.latitude, longitude: request.params.longitude });
+	point.set("latestlocation", geopoint);
+
+	// Save
+	point.save(null, {
+	  success: function(point) {
+            response.success(point); //return
+	    // Saved successfully.
+	  },
+	  error: function(point, error) {
+            response.success(error); //return
+	    // The save failed.
+	    // error is a Parse.Error with an error code and description.
+	  }
+	});	
+	/*
 	var myprofile;
 	var query = new Parse.Query("_User");
 	query.equalTo("objectId",request.params.objectId)
@@ -20,6 +42,8 @@ Parse.Cloud.define("KITprofil", function(request, response) {
                 response.error("error"); //return
             }
         });
+	*/
+	
 });
 
 
