@@ -73,7 +73,7 @@ query.first({
 		        var point = new Parse.GeoPoint({ latitude: request.params.latitude, longitude: request.params.longitude });
 
             	user.set('latestlocation',point);
-	    user.save({useMasterKey : true}, {
+	    user.save({useMasterKey : true},{ sessionToken: request.params.sessionToken }, {
             success: function (object) {
                 response.success("SUCCESS");
             }, error: function (object, error) {
