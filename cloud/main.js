@@ -1,7 +1,17 @@
 Parse.Cloud.define("KITprofil", function(request, response) {
 
-    var user = request.user;
-    response.success("user.get('username') = " + user.get('username'));
+   var userId = request.params.userId;
+   var point = new Parse.GeoPoint(request.params.latestlocation);
+
+    var query = new Parse.Query(Parse.User);
+    query.get(userId).then(function(user) {
+        user.set("latestlocation", point);
+        return user.save(null, {useMasterKey:true});
+    }).then(function(user) {
+        response.success(user);
+    }, function(error) {
+        response.error(error);
+    });
 	
 /*
 var query = new Parse.Query("User");
