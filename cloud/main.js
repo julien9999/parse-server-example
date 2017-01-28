@@ -1,4 +1,8 @@
 Parse.Cloud.define("KITprofil", function(request, response) {
+
+    var user = request.user;
+    response.success("user.get('username') = " + user.get('username'));
+	
 /*
 var query = new Parse.Query("User");
 	var geopoint = new Parse.GeoPoint({ latitude: request.params.latitude, longitude: request.params.longitude });
@@ -65,15 +69,14 @@ query.first({
                 response.error("error"); //return
             }
         });
-*/
+	
 	var query = new Parse.Query("_User");
 	query.equalTo("objectId",request.params.objectId)
-query.first({
-    success: function (user) {
-		        var point = new Parse.GeoPoint({ latitude: request.params.latitude, longitude: request.params.longitude });
-
+	query.first({
+    		success: function (user) {
+		var point = new Parse.GeoPoint({ latitude: request.params.latitude, longitude: request.params.longitude });
             	user.set('latestlocation',point);
-	    user.save({useMasterKey : true},{ sessionToken: request.params.sessionToken }, {
+	    	user.save({useMasterKey : true},{ sessionToken: request.params.sessionToken }, {
             success: function (object) {
                 response.success("SUCCESS");
             }, error: function (object, error) {
@@ -83,6 +86,7 @@ query.first({
     }, error: function (error) {
         response.error(error);
     }
+*/
 });
 	
 });
