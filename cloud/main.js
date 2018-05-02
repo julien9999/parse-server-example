@@ -6,6 +6,7 @@ Parse.Cloud.define("KITprofil", function(request, response) {
     var query = new Parse.Query(Parse.User);
     query.get(userId).then(function(user) {
         user.set("latestlocation", point);
+        user.set("visible", true);
         return user.save(null, {useMasterKey:true});
     }).then(function(user) {
         response.success(user);
