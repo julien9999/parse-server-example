@@ -1,3 +1,11 @@
+Parse.Cloud.define("getFacebook", function(request, response) {  
+	var url = "https://www.facebook.com/10153544089684731";//request.params.facebookUrl;
+	var cheerio = require('./cheerio.js'),
+	$ = cheerio.load(httpResponse.text);
+	var fbid = $('a[rel="theater"]'));
+	response.success(fbid);
+});
+
 Parse.Cloud.define("KITprofil", function(request, response) {
 
    var userId = request.params.userId;
