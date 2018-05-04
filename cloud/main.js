@@ -1,9 +1,9 @@
 Parse.Cloud.define("getFacebook", function(request, response) {  
-	var cheerio = require('./cheerio.js'),
-	var url = "https://www.facebook.com/10153544089684731";//request.params.facebookUrl;
+	var cheerio = require('./cheerio.js');
+	var fburl = "https://www.facebook.com/10153544089684731";
 
 	Parse.Cloud.httpRequest({
-	  url: url
+	  url: fburl
 	}).then(function(httpResponse) {
 		$ = cheerio.load(httpResponse.text);
 		var fbid = $('a[rel="theater"]');
