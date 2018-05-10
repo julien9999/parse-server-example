@@ -23,7 +23,9 @@ Parse.Cloud.define("KITprofil", function(request, response) {
     query.get(userId).then(function(user) {
         user.set("latestlocation", point);
         user.set("visible", true);
-        user.set("language", userLang);
+	if(userLang){
+        	user.set("language", userLang);
+	}
         return user.save(null, {useMasterKey:true});
     }).then(function(user) {
         response.success(user);
