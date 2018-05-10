@@ -16,12 +16,14 @@ Parse.Cloud.define("getFacebook", function(request, response) {
 Parse.Cloud.define("KITprofil", function(request, response) {
 
    var userId = request.params.userId;
+   var userLang = request.params.userLang;
    var point = new Parse.GeoPoint(request.params.latestlocation);
 
     var query = new Parse.Query(Parse.User);
     query.get(userId).then(function(user) {
         user.set("latestlocation", point);
         user.set("visible", true);
+        user.set("language", userLang);
         return user.save(null, {useMasterKey:true});
     }).then(function(user) {
         response.success(user);
