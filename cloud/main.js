@@ -260,7 +260,7 @@ Parse.Cloud.define("makeAllChatsReadTrue", function(request, response) {
 	var query = new Parse.Query("chat2");
 	query.equalTo("user1", pointerTo(request.params.friendObjectId, "_User"));
 	query.equalTo("user2", pointerTo(request.params.userObjectId, "_User"));
-	query.equalTo("read", false);
+	query.equalTo("readOrNot", false);
 
 	query.find().then(function(messages) {
 		messages.forEach(function(element) {
