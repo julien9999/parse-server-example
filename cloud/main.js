@@ -264,7 +264,7 @@ Parse.Cloud.define("makeAllChatsReadTrue", function(request, response) {
 
 	query.find().then(function(messages) {
 		messages.forEach(function(element) {
-			element.set("read", true);
+			element.set("readOrNot", true);
 		});
 		return messages;
 	}).then(function(messagesFinal) {
