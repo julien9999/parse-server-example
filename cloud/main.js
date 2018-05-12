@@ -1,20 +1,4 @@
-Parse.Cloud.define("getFacebook", function(request, response) {  
-	var cheerio = require('./cheerio.js');
-	var fburl = "https://www.facebook.com/10153544089684731";
-
-	Parse.Cloud.httpRequest({
-	  url: fburl
-	}).then(function(httpResponse) {
-		$ = cheerio.load(httpResponse.text);
-		var fbid = $('a[rel="theater"]');
-		response.success(fbid);
-	},function(httpResponse) {
-	  
-	});
-});
-
 Parse.Cloud.define("KITprofil", function(request, response) {
-
    var userId = request.params.userId;
    var userLang = request.params.userLang;
    var point = new Parse.GeoPoint(request.params.latestlocation);
@@ -24,7 +8,7 @@ Parse.Cloud.define("KITprofil", function(request, response) {
         user.set("latestlocation", point);
         user.set("visible", true);
 	if(userLang){
-        	user.set("language", userLang);
+           user.set("language", userLang);
 	}
         return user.save(null, {useMasterKey:true});
     }).then(function(user) {
@@ -272,6 +256,30 @@ Parse.Cloud.define("deleterelationships", function(request, response) {
     
 });
 
+Parse.Cloud.define("makeAllChatsReadTrue", function(request, response) {
+	var query = new Parse.Query("chat2");
+	query.equalTo("user1", pointerTo(request.params.friendObjectId, "_User"));
+	query.equalTo("user2", pointerTo(request.params.userObjectId, "_User"));
+	query.equalTo("read", false);
+
+	query.find().then(function(messages) {
+		messages.forEach(function(element) {
+			element.set("read", true);
+		});
+		return messages;
+	}).then(function(messagesFinal) {
+		Parse.Object.saveAll(messagesFinal, {
+			success : function(objs) {
+				response.success(objs);
+			},
+			error : function(error) {
+				response.error(error);
+			}
+		});
+	}, function(error) {
+		response.error("Une erreur s'est produite.");
+	});
+});
 
 Parse.Cloud.define("luoupasChat", function(request, response) {
     var query = new Parse.Query("chat");
