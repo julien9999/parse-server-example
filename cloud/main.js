@@ -1,3 +1,12 @@
+/*
+Parse.Cloud.afterSave("chat2", function(request, response) {
+	var post = request.object;
+	if (post.get("updatedAt") === post.get("createdAt")) {
+
+	}
+});
+*/
+
 Parse.Cloud.define("KITprofil", function(request, response) {
    var userId = request.params.userId;
    var userLang = request.params.userLang;
