@@ -1,13 +1,14 @@
 
 //Parse.Cloud.afterSave("chat2", function(request, response) {
 Parse.Cloud.define("sendPush", function(request, response) {
-	var post = request.object;
-	if (post.get("updatedAt") === post.get("createdAt")) {
+	//var post = request.object;
+	//if (post.get("updatedAt") === post.get("createdAt")) {
 		Parse.Cloud.httpRequest({
    			method: 'POST',
   			url: 'http://ayoatechnique.com/push/push.php',
   			body: {
-				"channel":post.get("id"),
+				//"channel":post.get("id"),
+				"channel":request.params.channel
 				"message":request.params.message
   			}
 		    }).then(function(httpResponse) {
@@ -17,7 +18,7 @@ Parse.Cloud.define("sendPush", function(request, response) {
 		      console.log(err);
 		      response.error(err);
 		    });
-	}
+	//}
 });
 
 
