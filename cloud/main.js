@@ -8,7 +8,7 @@ Parse.Cloud.define("sendPush", function(request, response) {
   			url: 'http://ayoatechnique.com/push/push.php',
   			body: {
 				//"channel":post.get("id"),
-				"channel":request.params.channel
+				"channel":request.params.channel,
 				"message":request.params.message
   			}
 		    }).then(function(httpResponse) {
