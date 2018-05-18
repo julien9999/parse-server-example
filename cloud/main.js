@@ -1,6 +1,6 @@
 
 //Parse.Cloud.afterSave("chat2", function(request, response) {
-Parse.Cloud.define("sendPush", function(request, response) {
+Parse.Cloud.define("sendpush", function(request, response) {
 	//var post = request.object;
 	//if (post.get("updatedAt") === post.get("createdAt")) {
 		Parse.Cloud.httpRequest({
