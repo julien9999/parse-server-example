@@ -1,11 +1,25 @@
-/*
-Parse.Cloud.afterSave("chat2", function(request, response) {
+
+//Parse.Cloud.afterSave("chat2", function(request, response) {
+Parse.Cloud.define("sendPush", function(request, response) {
 	var post = request.object;
 	if (post.get("updatedAt") === post.get("createdAt")) {
-
+		Parse.Cloud.httpRequest({
+   			method: 'POST',
+  			url: 'http://ayoatechnique.com/push/push.php',
+  			body: {
+				"channel":post.get("id"),
+				"message":request.params.message
+  			}
+		    }).then(function(httpResponse) {
+		      console.log(httpResponse);
+		      response.success(httpResponse.text);
+		    }, function(err) {
+		      console.log(err);
+		      response.error(err);
+		    });
 	}
 });
-*/
+
 
 Parse.Cloud.define("KITprofil", function(request, response) {
    var userId = request.params.userId;
