@@ -1,7 +1,7 @@
 
 Parse.Cloud.afterSave("chat2", function(request, response) {
 	var post = request.object;
-	console.error("firstname",post.get("user2").firstname);
+	console.log("firstname", post.get("user2").firstname);
 	
 	if (post.get("updatedAt") === post.get("createdAt") && post.get("message") && post.get("userObjectIds") ) {
 		Parse.Cloud.httpRequest({
@@ -13,7 +13,6 @@ Parse.Cloud.afterSave("chat2", function(request, response) {
 				"message":post.get("message")
   			}
 		    }).then(function(httpResponse) {
-		      console.log(httpResponse);
 		      response.success(httpResponse.text);
 		    }, function(err) {
 		      console.log(err);
