@@ -1,7 +1,23 @@
 
+function getSenderDetails(objectId) {
+	var query = new Parse.Query("_User");
+	query.equalTo("objectId", objectId);
+	return query.first();    	
+}
+
 Parse.Cloud.afterSave("chat2", function(request, response) {
 	var post = request.object;
-	console.log("firstname", post.get("user2").firstname);
+	
+	getSenderDetails(post.get("userObjectIds")[0]).then(function(user) {
+		console.log("firstname===", user.get("firstname"));
+		
+	}).then(function(post2) {
+	response.success(post2);
+	}, function(error) {
+		response.error(error);
+	});
+	
+/*	
 	
 	if (post.get("updatedAt") === post.get("createdAt") && post.get("message") && post.get("userObjectIds") ) {
 		Parse.Cloud.httpRequest({
@@ -19,6 +35,8 @@ Parse.Cloud.afterSave("chat2", function(request, response) {
 		      response.error(err);
 		    });
 	}
+*/
+
 });
 
 
