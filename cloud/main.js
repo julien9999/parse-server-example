@@ -21,7 +21,7 @@ Parse.Cloud.afterSave("chat2", function(request, response) {
 	
 	if (post.get("updatedAt") === post.get("createdAt") && post.get("message") && post.get("userObjectIds") ) {
 		getSenderDetails(post.get("userObjectIds")[0]).then(function(user) {
-			return sendPushToUser(post.get("userObjectIds")[1], user.get("firstname") + user.get("lastname") + ": " + post.get("message"));			
+			return sendPushToUser(post.get("userObjectIds")[1], user.get("firstname") + " " + user.get("lastname") + ": " + post.get("message"));			
 		}).then(function(post2) {
 		response.success(post2);
 		}, function(error) {
