@@ -5,17 +5,29 @@ function getSenderDetails(objectId) {
 	return query.first();    	
 }
 
+function sendPushToUser(channel, message) {
+ return Parse.Cloud.httpRequest({
+	method: 'POST',
+	url: 'http://ayoatechnique.com/push/push.php',
+	body: {
+		"channel":channel,
+		"message":message
+	}
+});	
+}
+
 Parse.Cloud.afterSave("chat2", function(request, response) {
 	var post = request.object;
 	
-	getSenderDetails(post.get("userObjectIds")[0]).then(function(user) {
-		console.log("firstname===", user.get("firstname"));
-		
-	}).then(function(post2) {
-	response.success(post2);
-	}, function(error) {
-		response.error(error);
-	});
+	if (post.get("updatedAt") === post.get("createdAt") && post.get("message") && post.get("userObjectIds") ) {
+		getSenderDetails(post.get("userObjectIds")[0]).then(function(user) {
+			return sendPushToUser(post.get("userObjectIds")[1], user.get("firstname") + user.get("lastname") + ": " + post.get("message"));			
+		}).then(function(post2) {
+		response.success(post2);
+		}, function(error) {
+			response.error(error);
+		});
+	}
 	
 /*	
 	
