@@ -74,7 +74,6 @@ function getLatestIncrementId() {
 }
 
 Parse.Cloud.beforeSave("chat2", function(request, response) {
-	var incrementId =
     	request.object.set("incrementId", getLatestIncrementId());
 	response.success();
 });
