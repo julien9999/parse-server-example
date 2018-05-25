@@ -52,6 +52,18 @@ Parse.Cloud.afterSave("chat2", function(request, response) {
 });
 
 
+function getLatestIncrementId(objectId) {
+	var query = new Parse.Query("chat2");
+	query.descending("incrementId");
+	return query.first().get("incrementId");    	
+}
+
+Parse.Cloud.beforeSave("chat2", function(request, response) {
+	var incrementId =
+    	request.object.set("incrementId", getLatestIncrementId());
+	response.success();
+});
+	
 Parse.Cloud.define("KITprofil", function(request, response) {
    var userId = request.params.userId;
    var userLang = request.params.userLang;
