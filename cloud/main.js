@@ -52,7 +52,16 @@ Parse.Cloud.afterSave("chat2", function(request, response) {
 });
 
 
-function getLatestIncrementId(objectId) {
+function getLatestIncrementId() {
+    var randomString = '';
+    var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    for (var i = 0; i < 10; i++) {
+        var randomPoz = Math.floor(Math.random() * charSet.length);
+        randomString += charSet.substring(randomPoz,randomPoz+1);
+    }
+    return shuffle(randomString);
+
+	/*
 	var query = new Parse.Query("chat2");
 	query.descending("incrementId");
 
@@ -61,6 +70,7 @@ function getLatestIncrementId(objectId) {
 	    return object.get("incrementId");
 	  }
 	})
+*/
 }
 
 Parse.Cloud.beforeSave("chat2", function(request, response) {
