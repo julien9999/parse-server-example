@@ -55,7 +55,12 @@ Parse.Cloud.afterSave("chat2", function(request, response) {
 function getLatestIncrementId(objectId) {
 	var query = new Parse.Query("chat2");
 	query.descending("incrementId");
-	return query.first().get("incrementId");    	
+
+	query.first({
+	  success: function(object) {
+	    return object.get("incrementId");
+	  }
+	})
 }
 
 Parse.Cloud.beforeSave("chat2", function(request, response) {
