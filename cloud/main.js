@@ -79,6 +79,21 @@ Parse.Cloud.beforeSave("chat2", function(request, response) {
 	}
 	response.success();
 });
+
+Parse.Cloud.define("deleteConversation", function(request, response) {
+	var query = new Parse.Query("chat2");
+	query.containsAll("userObjectIds", [request.params.userId, request.params.friendId]);
+
+	query.find({
+	  success: function(results) {
+		Parse.Object.destroyAll(results, {useMasterKey: true});
+        	response.success();
+	  },
+	  error: function(error) {
+        	response.error(error);
+	  }
+	});	
+});
 	
 Parse.Cloud.define("KITprofil", function(request, response) {
    var userId = request.params.userId;
